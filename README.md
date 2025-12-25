@@ -37,7 +37,7 @@ CurryAPI is a self-hosted multi-model AI gateway that converts Cursor Web into a
 
 | Component | Technology |
 |-----------|------------|
-| Backend | Go 1.24+, Gin, MySQL |
+| Backend | Go 1.22+, Gin, MySQL |
 | Frontend | Vue 3, TypeScript, Naive UI, Vite |
 | Auth | JWT, OAuth 2.0, Session |
 | Database | MySQL 8.0+ |
@@ -45,7 +45,7 @@ CurryAPI is a self-hosted multi-model AI gateway that converts Cursor Web into a
 ### 📦 Quick Start
 
 #### Prerequisites
-- Go 1.24+
+- Go 1.22+
 - Node.js 18+
 - MySQL 8.0+
 
@@ -87,10 +87,55 @@ npm run dev
 
 ### 🐳 Docker Deployment
 
+#### Quick Start with Docker
 ```bash
-# Build and run
+# 1. Clone and configure
+git clone https://github.com/StenCurry/CurryAPI.git
+cd CurryAPI
+cp .env.example .env
+# Edit .env with your settings (especially database)
+
+# 2. Build and run
 docker build -t curryapi:latest .
-docker run -d --name curryapi -p 8002:8002 --env-file .env curryapi:latest
+docker run -d --name curryapi \
+  -p 8002:8002 \
+  --env-file .env \
+  curryapi:latest
+
+# 3. Access http://localhost:8002
+```
+
+#### Docker Compose (Recommended)
+```yaml
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_DATABASE: cursor2api
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "3306:3306"
+
+  curryapi:
+    build: .
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+```
+
+```bash
+docker compose up -d --build
 ```
 
 ### 📡 API Examples
@@ -160,7 +205,7 @@ CurryAPI 是一个可自部署的多模型 AI 网关，能够将 Cursor Web 转�
 
 | 组件 | 技术 |
 |------|------|
-| 后端 | Go 1.24+, Gin, MySQL |
+| 后端 | Go 1.22+, Gin, MySQL |
 | 前端 | Vue 3, TypeScript, Naive UI, Vite |
 | 认证 | JWT, OAuth 2.0, Session |
 | 数据库 | MySQL 8.0+ |
@@ -168,7 +213,7 @@ CurryAPI 是一个可自部署的多模型 AI 网关，能够将 Cursor Web 转�
 ### 📦 快速开始
 
 #### 环境要求
-- Go 1.24+
+- Go 1.22+
 - Node.js 18+
 - MySQL 8.0+
 
@@ -210,10 +255,55 @@ npm run dev
 
 ### 🐳 Docker 部署
 
+#### 快速启动
 ```bash
-# 构建并运行
+# 1. 克隆并配置
+git clone https://github.com/StenCurry/CurryAPI.git
+cd CurryAPI
+cp .env.example .env
+# 编辑 .env 配置数据库等信息
+
+# 2. 构建并运行
 docker build -t curryapi:latest .
-docker run -d --name curryapi -p 8002:8002 --env-file .env curryapi:latest
+docker run -d --name curryapi \
+  -p 8002:8002 \
+  --env-file .env \
+  curryapi:latest
+
+# 3. 访问 http://localhost:8002
+```
+
+#### Docker Compose（推荐）
+```yaml
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_DATABASE: cursor2api
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "3306:3306"
+
+  curryapi:
+    build: .
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+```
+
+```bash
+docker compose up -d --build
 ```
 
 ### 📡 API 示例

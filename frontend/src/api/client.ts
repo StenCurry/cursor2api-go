@@ -2,9 +2,7 @@ import axios from 'axios'
 import type { ApiResponse } from '@/types'
 
 const client = axios.create({
-  baseURL: import.meta.env.DEV 
-    ? '' // 开发环境：使用相对路径，通过 Vite 代理
-    : import.meta.env.VITE_API_BASE_URL || 'http://localhost:8002', // 生产环境：使用环境变量
+  baseURL: import.meta.env.VITE_API_BASE_URL || '', // 使用环境变量，默认为相对路径（同域部署）
   withCredentials: true, // 携带 Cookie
   headers: {
     'Content-Type': 'application/json',

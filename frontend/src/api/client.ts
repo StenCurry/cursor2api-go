@@ -21,11 +21,10 @@ client.interceptors.request.use(
     }
     
     // Add no-cache headers for all requests
-    config.headers = {
-      ...config.headers,
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0'
+    if (config.headers) {
+      config.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+      config.headers['Pragma'] = 'no-cache'
+      config.headers['Expires'] = '0'
     }
     
     return config
@@ -139,8 +138,6 @@ client.interceptors.response.use(
           originalError: error
         })
     }
-
-    return Promise.reject(error)
   }
 )
 

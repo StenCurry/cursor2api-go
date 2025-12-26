@@ -432,4 +432,4 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- 请在首次登录后修改密码！
 -- ----------------------------
 INSERT INTO `users` (`username`, `email`, `password_hash`, `role`, `balance`) VALUES 
-('admin', 'admin@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 100.000000);
+('admin', 'admin@example.com', '$2a$10$8/GnRzS.jqvEwZYv6R5hIOWhReKQT82foKwweESZnwxGU528iV2Oq', 'admin', 100.000000);

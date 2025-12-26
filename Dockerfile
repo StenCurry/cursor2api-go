@@ -61,8 +61,8 @@ COPY --from=backend-builder /app/CurryAPI .
 # 复制 jscode 目录（Cursor 环境模拟所需）
 COPY --from=backend-builder /app/jscode ./jscode
 
-# 复制前端构建产物到 static 目录
-COPY --from=frontend-builder /app/frontend/dist ./static
+# 复制前端构建产物到 dist 目录（与 main.go 中的路径一致）
+COPY --from=frontend-builder /app/frontend/dist ./dist
 
 # 更改所有者
 RUN chown -R appuser:appuser /app

@@ -22,6 +22,9 @@
 
 CurryAPI is a self-hosted multi-model AI gateway that converts Cursor Web into a fully OpenAI-compatible API. It provides a unified interface for accessing various AI models including GPT, Claude, Gemini, and DeepSeek, with built-in user management, quota control, and usage analytics.
 
+**Live Demo:** [https://www.kesug.icu](https://www.kesug.icu)
+
+
 ### ✨ Features
 
 - 🔄 **OpenAI Compatible API** - Seamlessly integrate with ChatGPT-Next-Web, LobeChat, and other OpenAI-compatible applications
@@ -189,6 +192,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ### 📖 项目介绍
 
 CurryAPI 是一个可自部署的多模型 AI 网关，能够将 Cursor Web 转换为完全兼容 OpenAI API 格式的接口。它提供统一的接口来访问各种 AI 模型，包括 GPT、Claude、Gemini 和 DeepSeek，并内置用户管理、配额控制和使用统计功能。
+
+体验地址:https://www.kesug.icu
 
 ### ✨ 功能特性
 
